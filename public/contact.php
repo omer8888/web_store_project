@@ -3,11 +3,8 @@
 
 <?php require_once("../resources/config.php"); ?>
 
-
 <!-- Header-->
 <?php include(TEMPLATE_FRONT .  "/header.php");?>
-
-
 
          <!-- Contact Section -->
 

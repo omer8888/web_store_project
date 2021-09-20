@@ -5,7 +5,7 @@ if(isset($_GET['add'])){
     $query= query("SELECT * FROM products WHERE product_id =".escape_string($_GET['add'])." ");
     confirm($query);
     while($row=fetch_array($query)){
-        if ($row['product_quantity'] != $_SESSION['product_'. $_GET['add']]){ #available quantity vs user cart quantity should
+        if ($row['product_quantity'] != $_SESSION['product_'. $_GET['add']]){ #error is quantity reach product stock limit
             $_SESSION['product_'. $_GET['add']]+=1;
         }
         else{
@@ -50,10 +50,5 @@ function show_cart_products()
         }
     }
 }
-
-
-
-
-
 
 ?>

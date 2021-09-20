@@ -4,15 +4,15 @@
     <!-- Page Content -->
 <div class="container">
 
-       <!-- Side Navigation -->
-
+    <!-- Side Navigation -->
     <?php include(TEMPLATE_FRONT . DS . "side_nav.php"); ?>
 
+    <!--using the product id from the url extracting the right product data
+    for example: item.php?product_id=3 -->
     <?php
     $query = query(" SELECT * FROM PRODUCTS WHERE product_id =" . escape_string($_GET['product_id']) . " ");
     confirm($query);
-    while($row = fetch_array($query)):
-
+    $row = fetch_array($query);
     ?>
 <div class="col-md-9">
 
@@ -29,9 +29,9 @@
 
         <div class="thumbnail">
          
-
+    <!-- product right box with info: title, price, short desc -->
     <div class="caption-full">
-        <h4><a href="#"><?php echo $row['product_title']; ?></a> </h4>
+        <h4><a href=""><?php echo $row['product_title']; ?></a> </h4>
         <hr>
         <h4 class=""><?php echo $row['product_price']; ?></h4>
 
@@ -192,13 +192,7 @@
 </div><!--Row for Tab Panel-->
 
 
-
-
 </div> <!-- /.col 9 end -->
-
-    <?php
-        endwhile;
-    ?>
 
 </div>
     <!-- /.container -->

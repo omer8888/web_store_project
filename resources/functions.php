@@ -56,8 +56,8 @@ function get_products(){
                         <div class="caption">
                             <h4 class="pull-right">&#36;{$row["product_price"]}</h4>
                             <h4><a href="item.php?product_id={$row["product_id"]}">{$row["product_title"]}</a>
-                            </h4>
-                            <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+                            </h4>                  
+                            <p>{$row["short_desc"]} <a href="item.php?product_id={$row["product_id"]}">More info</a></p>
                             <a class="btn btn-primary" href="cart.php?add={$row["product_id"]}">Add to cart</a>
                         </div>
                     </div>
@@ -67,8 +67,7 @@ function get_products(){
     }
 }
 
-function get_categories()
-{
+function get_categories(){
     $query = query(" SELECT * FROM categories");
     confirm($query);
     while ($row = fetch_array($query)) {
@@ -96,8 +95,7 @@ function get_catagory_header_in_catagory_page(){
     }
 }
 
-function get_products_in_catagory_page()
-{
+function get_products_in_catagory_page(){
     $query = query(" SELECT * FROM PRODUCTS WHERE product_catagory_id =" . escape_string($_GET['catagory_id']) . " ");
     confirm($query);
     while ($row = fetch_array($query)) {
@@ -119,8 +117,7 @@ function get_products_in_catagory_page()
     }
 }
 
-function get_products_in_shop_page()
-{
+function get_products_in_shop_page(){
     $query = query(" SELECT * FROM PRODUCTS ");
     confirm($query);
     while ($row = fetch_array($query)) {
@@ -142,8 +139,7 @@ function get_products_in_shop_page()
     }
 }
 
-function get_products_in_slider()
-{
+function get_products_in_slider(){
     $query = query(" SELECT * FROM PRODUCTS WHERE show_on_slider =1");
     confirm($query);
     $row = fetch_array($query);
@@ -161,11 +157,10 @@ function get_products_in_slider()
             </div>
     DELIMETER;
     echo $slider_other_products;
-}
+    }
 }
 
-function login_user()
-{
+function login_user(){
     if(isset($_POST['submit']))
     {
         $user_name = escape_string($_POST['user_name']);
@@ -201,6 +196,5 @@ function conatct_send_messege(){
         else{
             set_message("Email was sent successfully");
         }
-
     }
 }
