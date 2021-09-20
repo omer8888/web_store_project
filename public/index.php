@@ -2,7 +2,7 @@
 <?php include(TEMPLATE_FRONT . DS . "header.php"); ?>
 
 
-<!-- Page content -->
+<!-- Page content1 -->
 <div class="container">
 
     <div class="row">
