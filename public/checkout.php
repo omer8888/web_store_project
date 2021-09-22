@@ -9,7 +9,6 @@
 <!-- Page Content -->
 <div class="container">
 
-
 <!-- /.row --> 
 
 <div class="row">
@@ -33,46 +32,19 @@
     </table>
 </form>
 
-
-
 <!--  *********** CART TOTALS (right info box) *************-->
             
 <div class="col-xs-4 pull-right ">
-<h2>Cart Totals</h2>
-
-<table class="table table-bordered" cellspacing="0">
-
-<tr class="cart-subtotal">
-<th>Items:</th>
-<td><span class="amount">4</span></td>
-</tr>
-<tr class="shipping">
-<th>Shipping and Handling</th>
-<td>Free Shipping</td>
-</tr>
-
-<tr class="order-total">
-<th>Order Total</th>
-<td><strong><span class="amount">$3444</span></strong> </td>
-</tr>
-
-
-</tbody>
-
-</table>
-
+<h2>Summary</h2>
+    <?php show_cart_summary(); ?>
+    <p>5$ shipping fee per item, free shipping for 3 items or more</p>
 </div><!-- CART TOTALS-->
-
 
  </div><!--Main Content-->
 
+</div>
+<!-- /.container -->
 
-
-
-
-
-    </div>
-    <!-- /.container -->
 <?php include(TEMPLATE_FRONT . DS . "footer.php"); ?>
 
  <!-- jQuery -->
