@@ -107,11 +107,8 @@ function show_cart_summary(){
     echo $cart_totals;
 }
 
-function get_cart_shipping_price()
-{
-    if ($_SESSION['cart_shipping_method'] == 'Free Shipping')
-        return $_SESSION['cart_shipping_method'];
-    else
-        return ($_SESSION['cart_shipping_method'] . ' $');
+/* returning shipping price String with $ currency only for not free shipment */
+function get_cart_shipping_price(){
+    return ($_SESSION['cart_shipping_method'] == 'Free Shipping') ? $_SESSION['cart_shipping_method'] : ($_SESSION['cart_shipping_method'] . ' $');
 }
 ?>
