@@ -4,7 +4,7 @@
 /* clicks Add to cart
 * extracting the product id from the url using GET
 * extracting product details using product id from DB
-* verifing that user didnt reach product quantity limit (limit is on DB, user quantity on session)
+* verifying that user didnt reach product quantity limit (limit is on DB, user quantity on session)
 * +1 on user product quantity
 * redirect to checkout page
 */
@@ -39,7 +39,7 @@ if(isset($_GET['delete'])){
     redirect("checkout.php");
 }
 
-/* presenting user cart products
+/* Presenting user cart products
  * running on all the session array
  * looking for products
  * extracting product DB info
@@ -76,7 +76,7 @@ function show_cart_products(){
         $_SESSION['cart_shipping_method']='Free Shipping';
 }
 
-/* presenting cart summary box
+/* Presenting cart summary box
  * total price ,
  * showing shipping with $ in case its not free
  */
@@ -97,7 +97,7 @@ function show_cart_summary(){
 
         <tr class="order-total">
         <th>Order Total</th>
-        <td><strong><span class="amount">{$cart_total_price}</span></strong> </td>
+        <td><strong><span class="amount">&#36;{$cart_total_price}</span></strong> </td>
         </tr>
     
         </tbody>
@@ -107,7 +107,7 @@ function show_cart_summary(){
     echo $cart_totals;
 }
 
-/* returning shipping price String with $ currency only for not free shipment */
+/* Returning shipping price String with $ currency only for not free shipment */
 function get_cart_shipping_price(){
     return ($_SESSION['cart_shipping_method'] == 'Free Shipping') ? $_SESSION['cart_shipping_method'] : ($_SESSION['cart_shipping_method'] . ' $');
 }
