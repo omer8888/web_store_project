@@ -23,7 +23,7 @@
                     <a href="admin">Admin</a>
                 </li>
                 <li>
-                    <a href="checkout.php">Checkout</a>
+                    <a href="checkout.php">Checkout <?php echo "(".$_SESSION['cart_total_items'].")" ?></a>
                 </li>
                 <li>
                     <a href="contact.php">Contact</a>

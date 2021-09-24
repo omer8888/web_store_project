@@ -129,7 +129,7 @@ function get_products_in_shop_page(){
                         <h3>$row[product_title]</h3>
                         <p>$row[short_desc]</p>
                         <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="item.php?product_id={$row['product_id']}" class="btn btn-default">More Info</a>
+                            <a href="cart.php?add={$row["product_id"]}" class="btn btn-primary">Buy Now!</a> <a href="item.php?product_id={$row['product_id']}" class="btn btn-default">More Info</a>
                         </p>
                     </div>
                 </div>

@@ -31,7 +31,7 @@
          
     <!-- product right box with info: title, price, short desc -->
     <div class="caption-full">
-        <h4><a href=""><?php echo $row['product_title']; ?></a> </h4>
+        <h4><a href="cart.php?add=<?php echo $row["product_id"]?>"><?php echo $row['product_title']; ?></a> </h4>
         <hr>
         <h4 class=""><?php echo $row['product_price']; ?></h4>
 
@@ -49,10 +49,9 @@
           
         <p><?php echo $row['short_desc']; ?></p>
 
-   
     <form action="">
         <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="ADD TO CART">
+              <a class="btn btn-primary" href="cart.php?add=<?php echo $row["product_id"]?>">Add to cart</a>
         </div>
     </form>
 

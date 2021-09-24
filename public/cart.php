@@ -14,6 +14,7 @@ if(isset($_GET['add'])){
     $row=fetch_array($query);
     if ($row['product_quantity'] != $_SESSION['product_'. $_GET['add']]){ #error is quantity reach product stock limit
         $_SESSION['product_'. $_GET['add']]+=1;
+        $_SESSION['cart_total_items']+=1;
     }
     else{
         set_message("Sorry, limited stock,<br> only ". $row['product_quantity'] ." ". $row['product_title']." ". "available");
@@ -22,12 +23,14 @@ if(isset($_GET['add'])){
 }
 
 /* user click Remove
-* -1 on product session, free memory if quantity reach 0
+* -1 on product session, free memory if quantity reach 0, -1 on total items,
 */
 if(isset($_GET['remove'])){
-    $_SESSION['product_'. $_GET['remove']]-=1;
+    $_SESSION['product_'. $_GET['remove']]-=1; # user item quantity
     if($_SESSION['product_'. $_GET['remove']]==0) # release memory if quantity is 0
         unset($_SESSION['product_'. $_GET['remove']]);
+    $_SESSION['cart_total_items']-=1;
+
     redirect("checkout.php");
 }
 
@@ -35,6 +38,7 @@ if(isset($_GET['remove'])){
 * free this product quantity session
 */
 if(isset($_GET['delete'])){
+    $_SESSION['cart_total_items']-=$_SESSION['product_'. $_GET['delete']];
     unset($_SESSION['product_'. $_GET['delete']]);
     redirect("checkout.php");
 }
