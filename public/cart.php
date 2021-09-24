@@ -82,6 +82,8 @@ function show_cart_products(){
     }
     if ($_SESSION['cart_total_items']>=3)
         $_SESSION['cart_shipping_method']='Free Shipping';
+    else
+        $_SESSION['cart_total_price']+=$_SESSION['cart_shipping_method'];
 }
 
 /* Presenting cart summary box
