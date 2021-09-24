@@ -15,7 +15,12 @@
     <h4 class="text-center bg-danger"> <?php  display_message();  ?> </h4> <!--error is quantity reach product stock limit-->
       <h1>Checkout</h1>
 
-<form action="">
+<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_cart">
+        <input type="hidden" name="business" value="business_test1@ecom.com">
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="hidden" name="upload" value="1">
+
     <table class="table table-striped">
         <thead>
           <tr>
@@ -30,6 +35,9 @@
             <?php show_cart_products(); ?>
         </tbody>
     </table>
+        <input type="image" name="submit" border="0"
+               src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
+               alt="PayPal - The safer, easier way to pay online">
 </form>
 
 <!--  *********** CART TOTALS (right info box) *************-->
