@@ -72,7 +72,7 @@ function show_cart_products(){
                     <input type="hidden" name="item_name_{$row['product_id']}" value="{$row['product_title']}">
                     <input type="hidden" name="item_number_{$row['product_id']}" value="{$row['product_id']}">
                     <input type="hidden" name="amount_{$row['product_id']}" value="{$row['product_price']}">
-                    <input type="hidden" name="quantity_{$row['product_id']}" value="$user_product_quantity">
+                    <input type="hidden" name="quantity_{$row['product_id']}" value="{$user_product_quantity}">
                 DELIMETER;
                 echo $products;
             $_SESSION['cart_total_price']+=$sub_total;
