@@ -52,6 +52,7 @@ if(isset($_GET['delete'])){
  */
 function show_cart_products(){
     $_SESSION['cart_total_price'] = $_SESSION['cart_total_items'] = $_SESSION['cart_shipping_method'] =0;
+    $cart_item_num =1;
     foreach ($_SESSION as $name => $user_product_quantity){
         if(strpos($name, 'product_')!==false && $user_product_quantity > 0){    //strpos: includes
             $product_id = explode("product_",$name)[1]; //explode: split the if from the product_X
@@ -69,21 +70,31 @@ function show_cart_products(){
                     <td><a class='btn btn-warning' href="cart.php?remove={$row['product_id']}"><span class='glyphicon glyphicon-minus'></span></span>Remove</a></td>
                     <td><a class='btn btn-danger' href="cart.php?delete={$row['product_id']}"><span class='glyphicon glyphicon-remove'></span></span>delete</a></td>          
                     </tr>
-                    <input type="hidden" name="item_name_{$row['product_id']}" value="{$row['product_title']}">
-                    <input type="hidden" name="item_number_{$row['product_id']}" value="{$row['product_id']}">
-                    <input type="hidden" name="amount_{$row['product_id']}" value="{$row['product_price']}">
-                    <input type="hidden" name="quantity_{$row['product_id']}" value="{$user_product_quantity}">
+                    <input type="hidden" name="item_name_{$cart_item_num}" value="{$row['product_title']}">
+                    <input type="hidden" name="item_number_{$cart_item_num}" value="{$row['product_id']}">
+                    <input type="hidden" name="amount_{$cart_item_num}" value="{$row['product_price']}">
+                    <input type="hidden" name="quantity_{$cart_item_num}" value="{$user_product_quantity}">
                 DELIMETER;
                 echo $products;
             $_SESSION['cart_total_price']+=$sub_total;
             $_SESSION['cart_total_items']+= $user_product_quantity;
             $_SESSION['cart_shipping_method'] = 5* $_SESSION['cart_total_items'];
+            $cart_item_num+=1;
         }
     }
     if ($_SESSION['cart_total_items']>=3)
         $_SESSION['cart_shipping_method']='Free Shipping';
-    else
-        $_SESSION['cart_total_price']+=$_SESSION['cart_shipping_method'];
+    else {
+        $_SESSION['cart_total_price'] += $_SESSION['cart_shipping_method'];
+        $shipping = <<<DELIMETER
+                    <input type="hidden" name="item_name_{$cart_item_num}" value="shipping fee">
+                    <input type="hidden" name="item_number_{$cart_item_num}" value="9">
+                    <input type="hidden" name="amount_{$cart_item_num}" value="{$_SESSION['cart_shipping_method']}">
+                    <input type="hidden" name="quantity_{$cart_item_num}" value="{$user_product_quantity}">
+                DELIMETER;
+        echo $shipping;
+    }
+
 }
 
 /* Presenting cart summary box
@@ -92,7 +103,7 @@ function show_cart_products(){
  */
 function show_cart_summary(){
     $shipping_price = get_cart_shipping_price();
-    $cart_total_price = $_SESSION['cart_total_price'].' $';
+    $cart_total_price = $_SESSION['cart_total_price'];
     $cart_totals = <<<DELIMETER
         <table class="table table-bordered" cellspacing="0">
 
@@ -107,7 +118,7 @@ function show_cart_summary(){
 
         <tr class="order-total">
         <th>Order Total</th>
-        <td><strong><span class="amount">&#36;{$cart_total_price}</span></strong> </td>
+        <td><strong><span class="amount">{$cart_total_price}&#36;</span></strong> </td>
         </tr>
     
         </tbody>
@@ -120,5 +131,18 @@ function show_cart_summary(){
 /* Returning shipping price String with $ currency only for not free shipment */
 function get_cart_shipping_price(){
     return ($_SESSION['cart_shipping_method'] == 'Free Shipping') ? $_SESSION['cart_shipping_method'] : ($_SESSION['cart_shipping_method'] . ' $');
+}
+
+function show_paypal_button(){
+    if (isset($_SESSION['cart_total_items'])&&($_SESSION['cart_total_items']>0)) {
+        $paypal_button = <<<DELIMETER
+                <input type="image" name="submit" border="0"
+               src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
+               alt="PayPal - The safer, easier way to pay online">
+        DELIMETER;
+    echo $paypal_button;
+    }
+
+
 }
 ?>

@@ -35,9 +35,9 @@
             <?php show_cart_products(); ?>
         </tbody>
     </table>
-        <input type="image" name="submit" border="0"
-               src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
-               alt="PayPal - The safer, easier way to pay online">
+
+    <?php show_paypal_button(); ?>
+
 </form>
 
 <!--  *********** CART TOTALS (right info box) *************-->
