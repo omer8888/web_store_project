@@ -17,7 +17,7 @@
                 <?php get_products() ?>
             </div> <!-- /.row end -->
         </div>
-    </div>
+    </div>F
 </div>
 <!-- /.container -->
 

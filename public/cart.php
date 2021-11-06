@@ -52,10 +52,10 @@ if(isset($_GET['delete'])){
  */
 function show_cart_products(){
     $_SESSION['cart_total_price'] = $_SESSION['cart_total_items'] = $_SESSION['cart_shipping_method'] =0;
-    $cart_item_num =1;
+    $cart_item_num =1; #index for each item (for paypal api)
     foreach ($_SESSION as $name => $user_product_quantity){
         if(strpos($name, 'product_')!==false && $user_product_quantity > 0){    //strpos: includes
-            $product_id = explode("product_",$name)[1]; //explode: split the if from the product_X
+            $product_id = explode("product_",$name)[1]; //explode: split the id from the product_X
             $query = query("SELECT * FROM products WHERE product_id= '{$product_id}'");
             confirm($query);
             $row = fetch_array($query);
@@ -82,9 +82,11 @@ function show_cart_products(){
             $cart_item_num+=1;
         }
     }
+    # 3 items and more for free shipping
     if ($_SESSION['cart_total_items']>=3)
         $_SESSION['cart_shipping_method']='Free Shipping';
     else {
+        #updating hidden element with shipping info to paypal api
         $_SESSION['cart_total_price'] += $_SESSION['cart_shipping_method'];
         $shipping = <<<DELIMETER
                     <input type="hidden" name="item_name_{$cart_item_num}" value="shipping fee">
@@ -133,6 +135,7 @@ function get_cart_shipping_price(){
     return ($_SESSION['cart_shipping_method'] == 'Free Shipping') ? $_SESSION['cart_shipping_method'] : ($_SESSION['cart_shipping_method'] . ' $');
 }
 
+#paypal submit button will appear only when there are items on cart
 function show_paypal_button(){
     if (isset($_SESSION['cart_total_items'])&&($_SESSION['cart_total_items']>0)) {
         $paypal_button = <<<DELIMETER
@@ -142,7 +145,5 @@ function show_paypal_button(){
         DELIMETER;
     echo $paypal_button;
     }
-
-
 }
 ?>

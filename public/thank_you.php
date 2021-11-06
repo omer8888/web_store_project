@@ -10,7 +10,7 @@
         $order_transaction_id= $_GET['tx'];
         $order_status= $_GET['st'];
 
-        /* updating the order table */
+        /* inserting the order info into DB orders table */
         $query = query("INSERT INTO orders (order_amount,order_currency,order_transaction_id,order_status)
         VALUES ('{$order_amount}','{$order_currency}','{$order_transaction_id}','{$order_status}')");
         confirm($query);
