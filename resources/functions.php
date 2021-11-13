@@ -167,12 +167,13 @@ function login_user(){
         $user_password = escape_string($_POST['user_password']);
         $query = query("SELECT * FROM users WHERE user_name = '{$user_name}' AND user_password = '{$user_password}' ");
         confirm($query);
-        if (mysqli_num_rows($query) == 0)
+        if (mysqli_num_rows($query) == 0) #wrong loging info
         {
             set_message('Error: wrong pass or user name');
             redirect("login.php");
         }
-        else{
+        else{ #correct login info
+            $_SESSION['username'] = $user_name;
             set_message("successful login, welcome back {$user_name}");
             redirect("admin");
         }

@@ -1,6 +1,13 @@
 <?php require_once("../../resources/config.php"); ?>
 <?php include(TEMPLATE_BACK . "/header.php"); ?>
 
+
+<?php
+//blocking un logged admin from getting this page
+if (!isset($_SESSION['username'])) {
+    redirect("../../public");
+}
+?>
 <div id="page-wrapper">
 
     <div class="container-fluid">
