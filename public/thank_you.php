@@ -4,7 +4,9 @@
 <?php require_once("../resources/config.php"); ?>
 
 <?php
-    if(isset($_GET['tx'])){ /*only if transaction exists */
+    #This is the thank you page the user sees after finishing purchasing using paypal
+    #show_reports();
+    if(isset($_GET['tx'])){ /*only if transaction exists get the paypal info from the url*/
         $order_amount= $_GET['amt'];
         $order_currency= $_GET['cc'];
         $order_transaction_id= $_GET['tx'];
@@ -18,7 +20,7 @@
         session_destroy(); //cleaning cart
     }
     else{
-        redirect("index.php"); //redirect home in case no transaction
+        #redirect("index.php"); //redirect home in case no transaction
     }
 ?>
 <?php include(TEMPLATE_FRONT . DS . "header.php"); ?> <!-- clean cart before i show header -->

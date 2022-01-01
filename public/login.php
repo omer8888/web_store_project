@@ -14,7 +14,7 @@
                     username<input type="text" name="user_name" class="form-control"></label>
                 </div>
                  <div class="form-group"><label for="user_password">
-                    Password<input type="text" name="user_password" class="form-control"></label>
+                    Password<input type="password" name="user_password" class="form-control"></label>
                 </div>
 
                 <div class="form-group">

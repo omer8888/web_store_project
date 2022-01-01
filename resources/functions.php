@@ -58,7 +58,7 @@ function get_products(){
                             <h4><a href="item.php?product_id={$row["product_id"]}">{$row["product_title"]}</a>
                             </h4>                  
                             <p>{$row["short_desc"]} <a href="item.php?product_id={$row["product_id"]}">More info</a></p>
-                            <a class="btn btn-primary" href="cart.php?add={$row["product_id"]}">Add to cart</a>
+                            <a class="btn btn-primary" href="../resources/cart.php?add={$row["product_id"]}">Add to cart</a>
                         </div>
                     </div>
                 </div>
@@ -107,7 +107,7 @@ function get_products_in_catagory_page(){
                         <h3>$row[product_title]</h3>
                         <p>$row[short_desc]</p>
                         <p>
-                            <a href="#####" class="btn btn-primary">Buy Now!</a> <a href="item.php?product_id={$row['product_id']}" class="btn btn-default">More Info</a>
+                            <a href="checkout.php?add={$row['product_id']}" class="btn btn-primary">Buy Now!</a> <a href="item.php?product_id={$row['product_id']}" class="btn btn-default">More Info</a>
                         </p>
                     </div>
                 </div>
@@ -129,7 +129,7 @@ function get_products_in_shop_page(){
                         <h3>$row[product_title]</h3>
                         <p>$row[short_desc]</p>
                         <p>
-                            <a href="cart.php?add={$row["product_id"]}" class="btn btn-primary">Buy Now!</a> <a href="item.php?product_id={$row['product_id']}" class="btn btn-default">More Info</a>
+                            <a href="../resources/cart.php?add={$row["product_id"]}" class="btn btn-primary">Buy Now!</a> <a href="item.php?product_id={$row['product_id']}" class="btn btn-default">More Info</a>
                         </p>
                     </div>
                 </div>

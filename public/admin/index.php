@@ -3,6 +3,7 @@
 
 
 <?php
+#This the the admin home page
 //blocking un logged admin from getting this page
 if (!isset($_SESSION['username'])) {
     redirect("../../public");
@@ -27,7 +28,7 @@ if (!isset($_SESSION['username'])) {
         </div>
         <!-- /.row -->
 
-        <!--presenting admin content after verifing url-->
+        <!--presenting admin content after verifying url-->
         <?php
         if ($_SERVER['REQUEST_URI'] == "/ecom/public/admin/" || $_SERVER['REQUEST_URI'] == "/ecom/public/admin/index.php") {
             include(TEMPLATE_BACK . "/admin_content.php");
@@ -41,7 +42,7 @@ if (!isset($_SESSION['username'])) {
             include(TEMPLATE_BACK . "/products.php");
         }
         if (isset($_GET['add_product'])) {
-            include(TEMPLATE_BACK . "/add_product.php");
+            include(TEMPLATE_BACK . "/admin_add_product.php");
         }
         if (isset($_GET['categories'])) {
             include(TEMPLATE_BACK . "/categories.php");

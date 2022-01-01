@@ -31,7 +31,7 @@
          
     <!-- product right box with info: title, price, short desc -->
     <div class="caption-full">
-        <h4><a href="cart.php?add=<?php echo $row["product_id"]?>"><?php echo $row['product_title']; ?></a> </h4>
+        <h4><a href="../resources/cart.php?add=<?php echo $row["product_id"]?>"><?php echo $row['product_title']; ?></a> </h4>
         <hr>
         <h4 class=""><?php echo $row['product_price']; ?></h4>
 
@@ -51,7 +51,7 @@
 
     <form action="">
         <div class="form-group">
-              <a class="btn btn-primary" href="cart.php?add=<?php echo $row["product_id"]?>">Add to cart</a>
+              <a class="btn btn-primary" href="../resources/cart.php?add=<?php echo $row["product_id"]?>">Add to cart</a>
         </div>
     </form>
 
@@ -65,7 +65,7 @@
 </div><!--Row For Image and Short Description-->
 
 
-        <hr>
+<hr>
 
 
 <!--Row for Tab Panel-->
@@ -85,7 +85,6 @@
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="home">
 
-<p></p>
            
     <p><?php echo $row['product_description'] ?>  </p>
 

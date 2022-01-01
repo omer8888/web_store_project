@@ -3,7 +3,6 @@
 
 <?php require_once("../resources/config.php"); ?>
 <?php include(TEMPLATE_FRONT . DS . "header.php"); ?>
-<?php require_once("cart.php"); ?>
 
 
 <!-- Page Content -->
@@ -12,7 +11,7 @@
 <!-- /.row --> 
 
 <div class="row">
-    <h4 class="text-center bg-danger"> <?php  display_message();  ?> </h4> <!--error is quantity reach product stock limit-->
+    <h4 class="text-center bg-danger"> <?php  display_message();  ?> </h4> <!--error if quantity reach product stock limit-->
       <h1>Checkout</h1>
 
 <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">

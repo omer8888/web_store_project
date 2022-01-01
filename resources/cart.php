@@ -1,4 +1,4 @@
-<?php require_once("../resources/config.php"); ?>
+<?php require_once("config.php"); ?>
 <?php
 
 /* clicks Add to cart
@@ -12,14 +12,14 @@ if(isset($_GET['add'])){
     $query= query("SELECT * FROM products WHERE product_id =".escape_string($_GET['add'])." ");
     confirm($query);
     $row=fetch_array($query);
-    if ($row['product_quantity'] != $_SESSION['product_'. $_GET['add']]){ #error is quantity reach product stock limit
+    if ($row['product_quantity'] != $_SESSION['product_'. $_GET['add']]){ #checking if quantity reach product stock limit
         $_SESSION['product_'. $_GET['add']]+=1;
         $_SESSION['cart_total_items']+=1;
     }
-    else{
+    else{#error is quantity reach product stock limit
         set_message("Sorry, limited stock,<br> only ". $row['product_quantity'] ." ". $row['product_title']." ". "available");
     }
-    redirect("checkout.php");
+    redirect("../public/checkout.php");
 }
 
 /* user click Remove
@@ -31,16 +31,16 @@ if(isset($_GET['remove'])){
         unset($_SESSION['product_'. $_GET['remove']]);
     $_SESSION['cart_total_items']-=1;
 
-    redirect("checkout.php");
+    redirect("../public/checkout.php");
 }
 
 /* user click Delete
 * free this product quantity session
 */
 if(isset($_GET['delete'])){
-    $_SESSION['cart_total_items']-=$_SESSION['product_'. $_GET['delete']];
+    $_SESSION['cart_total_items']-=$_SESSION['product_'. $_GET['delete']]; #reducing the product amount from the cart total items
     unset($_SESSION['product_'. $_GET['delete']]);
-    redirect("checkout.php");
+    redirect("../public/checkout.php");
 }
 
 /* Presenting user cart products
@@ -51,7 +51,7 @@ if(isset($_GET['delete'])){
  * presenting on cart
  */
 function show_cart_products(){
-    $_SESSION['cart_total_price'] = $_SESSION['cart_total_items'] = $_SESSION['cart_shipping_method'] =0;
+    $_SESSION['cart_total_price'] = $_SESSION['cart_total_items'] = $_SESSION['cart_shipping_method'] = 0;
     $cart_item_num =1; #index for each item (for paypal api)
     foreach ($_SESSION as $name => $user_product_quantity){
         if(strpos($name, 'product_')!==false && $user_product_quantity > 0){    //strpos: includes
@@ -66,9 +66,9 @@ function show_cart_products(){
                     <td>$row[product_price]</td>
                     <td>$user_product_quantity</td>
                     <td>$sub_total</td>          
-                    <td><a class='btn btn-success' href="cart.php?add={$row['product_id']}"><span class='glyphicon glyphicon-plus'></span></span>Add</a></td>
-                    <td><a class='btn btn-warning' href="cart.php?remove={$row['product_id']}"><span class='glyphicon glyphicon-minus'></span></span>Remove</a></td>
-                    <td><a class='btn btn-danger' href="cart.php?delete={$row['product_id']}"><span class='glyphicon glyphicon-remove'></span></span>delete</a></td>          
+                    <td><a class='btn btn-success' href="../resources/cart.php?add={$row['product_id']}"><span class='glyphicon glyphicon-plus'></span></span>Add</a></td>
+                    <td><a class='btn btn-warning' href="../resources/cart.php?remove={$row['product_id']}"><span class='glyphicon glyphicon-minus'></span></span>Remove</a></td>
+                    <td><a class='btn btn-danger' href="../resources/cart.php?delete={$row['product_id']}"><span class='glyphicon glyphicon-remove'></span></span>delete</a></td>          
                     </tr>
                     <input type="hidden" name="item_name_{$cart_item_num}" value="{$row['product_title']}">
                     <input type="hidden" name="item_number_{$cart_item_num}" value="{$row['product_id']}">
@@ -101,7 +101,7 @@ function show_cart_products(){
 
 /* Presenting cart summary box
  * total price ,
- * showing shipping with $ in case its not free
+ * showing shipping with $ - only when its not free
  */
 function show_cart_summary(){
     $shipping_price = get_cart_shipping_price();
@@ -143,7 +143,7 @@ function show_paypal_button(){
                src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
                alt="PayPal - The safer, easier way to pay online">
         DELIMETER;
-    echo $paypal_button;
+        echo $paypal_button;
     }
 }
 ?>
