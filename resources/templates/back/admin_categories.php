@@ -38,10 +38,9 @@
 
 
         <tbody>
-        <tr>
-            <td>20</td>
-            <td>Example Title</td>
-        </tr>
+
+        <?php get_admin_categories_view(); ?>
+
         </tbody>
 
     </table>

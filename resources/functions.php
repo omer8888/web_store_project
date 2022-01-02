@@ -211,7 +211,7 @@ function get_reports(){
     $query = query("SELECT * FROM REPORTS");
     confirm($query);
     while($row = fetch_array($query)){
-        $order = <<<DELIMETER
+        $report = <<<DELIMETER
             <tr>
                 <td>{$row["order_id"]}</td>
                 <td>{$row["product_title"]}</td>
@@ -221,7 +221,7 @@ function get_reports(){
                 <td>Completed</td>
             </tr>
     DELIMETER;
-    echo $order;
+    echo $report;
     }
 }
 
@@ -231,7 +231,7 @@ function get_admin_product_view(){
     $query = query("SELECT * FROM PRODUCTS");
     confirm($query);
     while($row = fetch_array($query)){
-        $order = <<<DELIMETER
+        $product = <<<DELIMETER
             <tr>
                 <td>{$row["product_id"]}</td>
                 <td>{$row["product_title"]}</td>
@@ -241,6 +241,75 @@ function get_admin_product_view(){
                 
             </tr>
     DELIMETER;
+        echo $product;
+    }
+}
+
+//********************
+//*** prints categories to admin page
+function get_admin_categories_view(){
+    $query = query("SELECT * FROM CATEGORIES");
+    confirm($query);
+    while($row = fetch_array($query)){
+        $cat = <<<DELIMETER
+            <tr>
+                <td>{$row["cat_id"]}</td>
+                <td>{$row["cat_title"]}</td>
+                <td>{$row["cat_desc"]}</td>               
+            </tr>
+    DELIMETER;
+        echo $cat;
+    }
+}
+
+//********************
+//*** prints categories to admin page
+function get_admin_users_view(){
+    $query = query("SELECT * FROM USERS");
+    confirm($query);
+    while($row = fetch_array($query)){
+        $user = <<<DELIMETER
+                <tr>
+                    <td>{$row["user_id"]}</td>
+                    <td>{$row["user_email"]}</td>
+                    <td>{$row["user_name"]}
+                        <div class="action_links">
+                            <a href="">Delete</a>
+                            <a href="">Edit</a>
+                        </div>
+                    </td>
+                    <td><img class="admin-user-thumbnail user_image" src="{$row["user_small_imag"]}" alt="" width="50" height="50"/></td>
+                </tr>
+    DELIMETER;
+        echo $user;
+    }
+}
+
+//********************
+//*** prints orders to admin page
+
+function get_orders(){
+    $query = query("SELECT * FROM ORDERS");
+    confirm($query);
+    while($row = fetch_array($query)){
+        $order = <<<DELIMETER
+            <tr>
+                <td>{$row["order_id"]}</td>
+                <td>{$row["order_amount"]}</td>
+                <td>{$row["order_currency"]}</td>
+                <td>{$row["order_status"]}</td>
+                <td>{$row["order_transaction_id"]}</td>
+                <td>Jan 2022</td>
+            </tr>
+    DELIMETER;
         echo $order;
     }
 }
+
+function get_total_table_values(string $table_name){
+    $query = query("SELECT count(*) AS TOTAL_ORDER FROM $table_name");
+    confirm($query);
+    echo fetch_array($query)[0];
+}
+
+

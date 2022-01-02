@@ -9,8 +9,8 @@
                         <i class="fa fa-shopping-cart fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">124</div>
-                        <div>New Orders!</div>
+                        <div class="huge"><?php get_total_table_values("ORDERS"); ?></div>
+                        <div>Orders!</div>
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                         <i class="fa fa-support fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">13</div>
+                        <div class="huge"><?php get_total_table_values("PRODUCTS"); ?></div>
                         <div>Products!</div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                         <i class="fa fa-tasks fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">12</div>
+                        <div class="huge"><?php get_total_table_values("CATEGORIES"); ?></div>
                         <div>Categories!</div>
                     </div>
                 </div>
@@ -88,17 +88,16 @@
                         <thead>
                         <tr>
                             <th>Order #</th>
-                            <th>Order Date</th>
-                            <th>Order Time</th>
-                            <th>Amount (USD)</th>
+                            <th>Amount</th>
+                            <th>Currency</th>
+                            <th>Status</th>
+                            <th>Transaction ID</th>
+                            <th>Date</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td>3326</td>
-                            <td>10/21/2013</td>
-                            <td>3:29 PM</td>
-                            <td>$321.33</td>
+                            <?php get_orders(); ?>
                         </tr>
                         </tbody>
                     </table>

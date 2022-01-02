@@ -36,19 +36,19 @@ if (!isset($_SESSION['username'])) {
 
 
         if (isset($_GET['orders'])) {
-            include(TEMPLATE_BACK . "/orders.php");
+            include(TEMPLATE_BACK . "/admin_orders.php");
         }
         if (isset($_GET['products'])) {
-            include(TEMPLATE_BACK . "/products.php");
+            include(TEMPLATE_BACK . "/admin_products.php");
         }
         if (isset($_GET['add_product'])) {
             include(TEMPLATE_BACK . "/admin_add_product.php");
         }
         if (isset($_GET['categories'])) {
-            include(TEMPLATE_BACK . "/categories.php");
+            include(TEMPLATE_BACK . "/admin_categories.php");
         }
         if (isset($_GET['users'])) {
-            include(TEMPLATE_BACK . "/users.php");
+            include(TEMPLATE_BACK . "/admin_users.php");
         }
         ?>
 
