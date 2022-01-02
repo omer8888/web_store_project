@@ -4,18 +4,14 @@
 <?php require_once("../resources/config.php"); ?>
 
 <?php
-    #This is the thank you page the user sees after finishing purchasing using paypal
-    #show_reports();
-    if(isset($_GET['tx'])){ /*only if transaction exists get the paypal info from the url*/
-        $order_amount= $_GET['amt'];
-        $order_currency= $_GET['cc'];
-        $order_transaction_id= $_GET['tx'];
-        $order_status= $_GET['st'];
-
-        /* inserting the order info into DB orders table */
-        $query = query("INSERT INTO orders (order_amount,order_currency,order_transaction_id,order_status)
-        VALUES ('{$order_amount}','{$order_currency}','{$order_transaction_id}','{$order_status}')");
-        confirm($query);
+                                     #This is the thank you page the user sees after finishing purchasing using paypal
+    if(isset($_GET['tx'])){          /*only if transaction exists (get the paypal info from the url)*/
+        $order_amount = $_GET['amt'];
+        $order_currency = $_GET['cc'];
+        $order_transaction_id = $_GET['tx'];
+        $order_status = $_GET['st'];
+        insert_order_info_to_orders($order_amount,$order_currency,$order_transaction_id,$order_status); // inserting this order info into orders table,
+        insert_order_products_to_reports();   // inserting product purchased into reports table
 
         session_destroy(); //cleaning cart
     }
@@ -23,7 +19,7 @@
         #redirect("index.php"); //redirect home in case no transaction
     }
 ?>
-<?php include(TEMPLATE_FRONT . DS . "header.php"); ?> <!-- clean cart before i show header -->
+<?php include(TEMPLATE_FRONT . DS . "header.php"); ?>
 
 
 <!-- Thank you page Content -->

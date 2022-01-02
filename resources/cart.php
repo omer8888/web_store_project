@@ -146,4 +146,40 @@ function show_paypal_button(){
         echo $paypal_button;
     }
 }
+
+/* inserting purchase info into reports table: (product purchased)
+ * running on all the session array
+ * looking for products
+ * extracting product info from products table,
+ * inserting relevant info into reports table
+ */
+function insert_order_products_to_reports()
+{
+    $last_reported_order_id = last_id(); #gets last order id inserted into orders table
+    /* inserting the order purchased products info into DB reports table */
+    foreach ($_SESSION as $name => $user_product_quantity) {
+        if (strpos($name, 'product_') !== false && $user_product_quantity > 0) {    //strpos: includes
+            $product_id = explode("product_", $name)[1]; //explode: split the id from the product_X
+            $query = query("SELECT * FROM products WHERE product_id= '{$product_id}'");
+            confirm($query);
+            $row = fetch_array($query);
+
+            $send_product = query("INSERT INTO reports (product_id,order_id,product_title,product_price,product_quantity)
+            VALUES ('{$product_id}','{$last_reported_order_id}','{$row['product_title']}','{$row['product_price']}','{$user_product_quantity}')");
+
+            confirm($send_product);
+
+        }
+    }
+}
+
+function insert_order_info_to_orders($order_amount,$order_currency,$order_transaction_id,$order_status)
+{
+    /* inserting the order info into DB orders table - from the paypal returned url */
+
+    $send_order = query("INSERT INTO orders (order_amount,order_currency,order_transaction_id,order_status)
+        VALUES ('{$order_amount}','{$order_currency}','{$order_transaction_id}','{$order_status}')");
+    confirm($send_order);
+}
+
 ?>
