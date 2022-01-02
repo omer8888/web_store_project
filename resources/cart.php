@@ -68,7 +68,7 @@ function show_cart_products(){
                     <td>$sub_total</td>          
                     <td><a class='btn btn-success' href="../resources/cart.php?add={$row['product_id']}"><span class='glyphicon glyphicon-plus'></span></span>Add</a></td>
                     <td><a class='btn btn-warning' href="../resources/cart.php?remove={$row['product_id']}"><span class='glyphicon glyphicon-minus'></span></span>Remove</a></td>
-                    <td><a class='btn btn-danger' href="../resources/cart.php?delete={$row['product_id']}"><span class='glyphicon glyphicon-remove'></span></span>delete</a></td>          
+                    <td><a class='btn btn-danger' href="../resources/cart.php?delete={$row['product_id']}"><span class='glyphicon glyphicon-remove'></span></span>Delete</a></td>          
                     </tr>
                     <input type="hidden" name="item_name_{$cart_item_num}" value="{$row['product_title']}">
                     <input type="hidden" name="item_number_{$cart_item_num}" value="{$row['product_id']}">
