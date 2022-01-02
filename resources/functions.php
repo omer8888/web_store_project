@@ -57,7 +57,7 @@ function get_products(){
         $product = <<<DELIMETER
                 <div class="col-sm-4 col-lg-4 col-md-4">
                     <div class="thumbnail">
-                        <a href="item.php?product_id={$row["product_id"]}"><img src="{$row["product_image"]}" alt=""></a>
+                        <a href="item.php?product_id={$row["product_id"]}"><img src="{$row["product_image"]}" alt="" width="300" height="510"></a>
                         <div class="caption">
                             <h4 class="pull-right">&#36;{$row["product_price"]}</h4>
                             <h4><a href="item.php?product_id={$row["product_id"]}">{$row["product_title"]}</a>
@@ -150,7 +150,7 @@ function get_products_in_slider(){
     $row = fetch_array($query);
         $slider_products = <<<DELIMETER
             <div class='active item'>
-            <img class="slide-image" src="{$row['wide_image']}" alt="">
+            <img class="slide-image" src="{$row['wide_image']}" alt="" width="1000" height="300">
             </div>
         DELIMETER;
     echo $slider_products;

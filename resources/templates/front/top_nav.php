@@ -28,6 +28,10 @@
                 <li>
                     <a href="contact.php">Contact</a>
                 </li>
+                <li>
+                    <a href="logout.php">Log out</a>
+                </li>
+
 
             </ul>
         </div>

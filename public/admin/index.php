@@ -6,7 +6,7 @@
 #This the the admin home page
 //blocking un logged admin from getting this page
 if (!isset($_SESSION['username'])) {
-    redirect("../../public");
+    redirect("../../public/login.php");
 }
 ?>
 <div id="page-wrapper">
