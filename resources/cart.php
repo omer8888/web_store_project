@@ -168,7 +168,7 @@ function insert_order_products_to_reports()
             VALUES ('{$product_id}','{$last_reported_order_id}','{$row['product_title']}','{$row['product_price']}','{$user_product_quantity}')");
 
             confirm($send_product);
-
+            unset($_SESSION[$name]); //removing product from the cart
         }
     }
 }

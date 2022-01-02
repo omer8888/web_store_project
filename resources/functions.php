@@ -185,7 +185,7 @@ function login_user(){
     }
 }
 
-function conatct_send_messege(){
+function contact_send_messege(){
     if(isset($_POST['submit'])){
         $sent_to ="gvina.the.cat@gmail.com";
         $form_name=$_POST['name'];
@@ -202,5 +202,45 @@ function conatct_send_messege(){
         else{
             set_message("Email was sent successfully");
         }
+    }
+}
+//********************
+//*** prints orders to admin page
+
+function get_reports(){
+    $query = query("SELECT * FROM REPORTS");
+    confirm($query);
+    while($row = fetch_array($query)){
+        $order = <<<DELIMETER
+            <tr>
+                <td>{$row["order_id"]}</td>
+                <td>{$row["product_title"]}</td>
+                <td>{$row["product_price"]}</td>
+                <td>{$row["product_quantity"]}</td>
+                <td>Jan 2022</td>
+                <td>Completed</td>
+            </tr>
+    DELIMETER;
+    echo $order;
+    }
+}
+
+//********************
+//*** prints products to admin page
+function get_admin_product_view(){
+    $query = query("SELECT * FROM PRODUCTS");
+    confirm($query);
+    while($row = fetch_array($query)){
+        $order = <<<DELIMETER
+            <tr>
+                <td>{$row["product_id"]}</td>
+                <td>{$row["product_title"]}</td>
+                <td>{$row["product_catagory_id"]}</td>
+                <td>{$row["product_price"]}</td>
+                <td>{$row["product_quantity"]}</td>
+                
+            </tr>
+    DELIMETER;
+        echo $order;
     }
 }
