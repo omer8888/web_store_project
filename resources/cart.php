@@ -5,7 +5,7 @@
 * extracting the product id from the url using GET
 * extracting product details using product id from DB
 * verifying that user didnt reach product quantity limit (limit is on DB, user quantity on session)
-* +1 on user product quantity
+* +1 on user product quantity ($_Session[product_1] , $_Session[product_2], ...)
 * redirect to checkout page
 */
 if(isset($_GET['add'])){
